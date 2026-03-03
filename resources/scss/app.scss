@@ -1,0 +1,64 @@
+@import '~bootstrap/scss/bootstrap';
+$bootstrap-icons-font-dir: 'bootstrap-icons/font/fonts';
+
+@import 'bootstrap-icons/font/bootstrap-icons';
+
+.btn-reset {
+    all: unset;
+    cursor: pointer;
+    display: inline-block;
+}
+
+body {
+    height: 100vh;
+    overflow-y: hidden;
+}
+
+#app {
+    height: 100%;
+}
+
+.b-fixed {
+    overflow-y: hidden;
+}
+
+.loader-wrapper {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.35);
+    z-index: 999;
+}
+
+.f_popover {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px 16px;
+    background-color: var(--bs-success);
+    color: var(--bs-white);
+    transition: opacity 0.2s ease-out;
+    opacity: 0;
+    border-radius: 4px;
+
+    &.popover--showed {
+        opacity: 1;
+    }
+}
+
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
