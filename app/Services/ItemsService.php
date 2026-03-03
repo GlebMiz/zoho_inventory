@@ -19,6 +19,7 @@ class ItemsService
     function getAll()
     {
         $items = $this->recordService->getByModule(ZohoModules::items);
+
         $result = new Collection();
         foreach ($items as $item) {
             if($item['status'] != 'active')

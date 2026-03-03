@@ -38,6 +38,18 @@ class RecordService
         return $response[$module->name] ?? [];
     }
 
+    function getOneByModule(ZohoModules $module, $id, array $query = [])
+    {
+        $query['organisation_id'] = config('services.zoho.organisation_id');
+        $response = $this->zoho->get($module->name.'/'.$id, [
+            'query' => $query,
+        ]);
+
+         $this->assertListSuccess($response);
+
+        return $response ?? [];
+    }
+
     private function assertCreateSuccess(array $response): void
     {
         $code = $response['code'] ?? null;

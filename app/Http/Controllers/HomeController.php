@@ -25,14 +25,14 @@ class HomeController
         return Inertia::render('Main', ['customers' => $customers, 'items' => $items, 'vendors' => $vendors]);
     }
 
-    function store(SalesOrderRequest $request, SalesOrderService $salesOrderService, PurchaseOrderService $purchaseOrderService)
+    function store(SalesOrderRequest $request, SalesOrderService $salesOrderService)
     {
-        if ($request->only('purchaseOrder')) {
-            $purchaseOrderDTO = PurchaseOrder::fromArray($request->only('purchaseOrder')['purchaseOrder']);
-            $purchaseOrderService->store($purchaseOrderDTO);
+        $salesOrderDTO = SalesOrder::fromArray($request->except('createPO'));
+
+        if ($request->input('createPO')) {
+            $salesOrderService->createPO($salesOrderDTO);
         }
 
-        $salesOrderDTO = SalesOrder::fromArray($request->except('purchaseOrder'));
         $salesOrderService->store($salesOrderDTO);
 
         return response()->json(['ok' => true]);

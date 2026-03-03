@@ -8,7 +8,6 @@ import Icon from '../Icon.vue';
 
 const props = defineProps<{
     item: ListItem;
-    rateField?: string;
 }>();
 
 const amount = computed(() =>
@@ -19,7 +18,7 @@ const products: undefined | any[] = inject('products');
 
 const onProductSelect = (product: Item) => {
     props.item.details = product;
-    props.item.rate = product[props.rateField ?? 'rate'];
+    props.item.rate = product.rate;
 };
 
 const productRemove = () => {
@@ -71,7 +70,7 @@ defineEmits(['removeRow']);
                 v-else
                 :isFieldSelect="true"
                 v-model="item.details"
-                :values="props.rateField ? products?.filter(prod => prod[props.rateField]) : products"
+                :values="products"
                 placeholder="Type or Click to select the Product"
             >
                 <template #item="{ item: product }">

@@ -27,13 +27,7 @@ class SalesOrderRequest extends FormRequest
             'adjustments' => ['nullable', 'array'],
             'adjustments.0.name' => ['nullable', new ZohoSingleLine()],
             'adjustments.0.value' => ['nullable', new ZohoSingleLine()],
-            'purchaseOrder' => ['nullable', 'array'],
-            'purchaseOrder.vendor' => ['required_with:purchaseOrder'],
-            'purchaseOrder.items' => ['required_with:purchaseOrder', 'array', 'min:1'],
-
-            'purchaseOrder.items.*.details' => ['nullable'],
-            'purchaseOrder.items.*.quantity' => ['nullable'],
-            'purchaseOrder.items.*.rate' => ['nullable'],
+            'createPO' => ['nullable', 'boolean'],
         ];
     }
 
@@ -69,22 +63,6 @@ class SalesOrderRequest extends FormRequest
                 }
             }
 
-            $po = $this->input('purchaseOrder');
-            if ($po && !empty($po['items']) && is_array($po['items'])) {
-                foreach ($po['items'] as $item) {
-                    if (
-                        empty($item['details']) ||
-                        (!isset($item['quantity']) || $item['quantity'] === '') ||
-                        (!isset($item['rate']) || $item['rate'] === '')
-                    ) {
-                        $validator->errors()->add(
-                            'purchaseOrder.items',
-                            'Each Purchase Order item must have details, quantity and rate.'
-                        );
-                        break;
-                    }
-                }
-            }
         });
     }
 }

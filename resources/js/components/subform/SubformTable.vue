@@ -5,7 +5,6 @@ import SubformItem from './SubformItem.vue';
 
 const props = defineProps<{
     items: FieldArrayContext<unknown>;
-    rateField?: string;
 }>();
 
 const { remove, push, move, fields } = props.items;
@@ -48,7 +47,6 @@ defineEmits(['addItem']);
                     <SubformItem
                         :key="element.key"
                         :item="element.value"
-                        :rate-field="rateField"
                         @remove-row="removeRow(index)"
                     />
                 </template>

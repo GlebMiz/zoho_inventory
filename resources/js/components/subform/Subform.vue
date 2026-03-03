@@ -6,8 +6,7 @@ import SubformTotal from './SubformTotal.vue';
 
 const props = defineProps<{
     items: FieldArrayContext<unknown>;
-    adjustments?: FieldArrayContext<{ name: string; value: string }>;
-    rateField?: string;
+    adjustments?: FieldArrayContext<{ name: string; value: string }>
 }>();
 
 defineEmits(['addItem']);
@@ -47,7 +46,6 @@ const totals = computed(() => {
         <SubformTable
             :items="items"
             @add-item="$emit('addItem')"
-            :rate-field="rateField"
         />
         <SubformTotal
             :adjustments="adjustments"

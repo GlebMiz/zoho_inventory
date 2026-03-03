@@ -11,8 +11,6 @@ final readonly class Item
         public string $name,
         public ?string $sku,
         public ?int $rate,
-        public ?int $purchase_rate,
-        public ?int $stock_on_hand,
     ) {
     }
 
@@ -23,8 +21,6 @@ final readonly class Item
             name: $data['name'],
             sku: $data['sku'] ?? null,
             rate: $data['rate'] ?? null,
-            purchase_rate: $data['purchase_rate'] ?? null,
-            stock_on_hand: $data['stock_on_hand'] ?? null,
         );
     }
 
